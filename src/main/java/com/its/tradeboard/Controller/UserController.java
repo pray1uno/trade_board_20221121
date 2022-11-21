@@ -33,13 +33,25 @@ public class UserController {
                         Model model,
                         HttpSession session) {
         boolean result = userService.login(userDTO);
+        boolean adminResult = userService.adminLogin(userDTO);
 
         if (result) {
             model.addAttribute("userLogin", userDTO.getUserId());
             session.setAttribute("userLogin", userDTO.getUserId());
             return "trade_main";
+        } else if (adminResult) {
+            model.addAttribute("adminLogin", userDTO.getUserId());
+            session.setAttribute("adminLogin", userDTO.getUserId());
+            return "admin";
         } else {
             return "index";
         }
     }
+
+    @GetMapping("/user/logout")
+    public String userLogout(HttpSession session) {
+        session.invalidate();
+        return "index";
+    }
+
 }

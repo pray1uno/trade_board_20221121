@@ -13,6 +13,7 @@
     <script src="/resources/js/jquery.js"></script>
 </head>
 <body>
+<jsp:include page="layout/header.jsp"></jsp:include>
 <div class="container">
     <form action="/user/login" method="post" name="loginForm">
         <input type="text" placeholder="ID" class="form-control" name="userId" id="loginId">
