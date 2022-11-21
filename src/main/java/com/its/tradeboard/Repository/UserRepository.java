@@ -21,4 +21,12 @@ public class UserRepository {
     public AdminDTO adminLogin(UserDTO userDTO) {
         return sql.selectOne("Admin.adminLogin", userDTO);
     }
+
+    public UserDTO updateForm(String loginData) {
+        return sql.selectOne("User.myPage", loginData);
+    }
+
+    public int update(UserDTO userDTO) {
+        return sql.update("User.update", userDTO);
+    }
 }

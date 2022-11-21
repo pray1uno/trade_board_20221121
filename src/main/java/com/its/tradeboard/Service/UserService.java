@@ -39,4 +39,18 @@ public class UserService {
             return false;
         }
     }
+
+    public UserDTO updateForm(String loginData) {
+        return userRepository.updateForm(loginData);
+    }
+
+    public boolean update(UserDTO userDTO) {
+        int updateResult = userRepository.update(userDTO);
+
+        if (updateResult > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

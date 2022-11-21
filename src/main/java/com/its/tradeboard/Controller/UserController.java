@@ -54,4 +54,29 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/user/myPage")
+    public String userMyPage() {
+        return "user_myPage";
+    }
+
+    @GetMapping("user/toUpdate")
+    public String userMyUpdateForm(Model model,
+                                   HttpSession session) {
+        String loginData = (String) session.getAttribute("userLogin");
+        UserDTO result = userService.updateForm(loginData);
+        model.addAttribute("myPage", result);
+        return "user_myUpdate";
+    }
+
+    @PostMapping("/user/myUpdate")
+    public String userMyUpdate(@ModelAttribute UserDTO userDTO) {
+        boolean result = userService.update(userDTO);
+
+        if (result) {
+            return "user_myPage";
+        } else {
+            return "index";
+        }
+    }
+
 }

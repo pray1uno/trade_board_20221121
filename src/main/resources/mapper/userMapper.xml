@@ -15,6 +15,20 @@
         where userId = #{userId}
           and userPassword = #{userPassword}
     </select>
+
+    <select id="myPage" resultType="userDTO">
+        select *
+        from trade_user_table
+        where userId = #{userId}
+    </select>
+
+    <update id="update" parameterType="userDTO">
+        update trade_user_table
+        set userPassword = #{userPassword},
+            userName     = #{userName},
+            userMobile   = #{userMobile}
+        where id = #{id}
+    </update>
 </mapper>
 
 

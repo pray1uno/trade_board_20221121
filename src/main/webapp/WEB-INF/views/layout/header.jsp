@@ -16,6 +16,10 @@
     <div class="container">
         <button onclick="returnToHome()" class="btn">메인</button>
 
+        <c:if test="${sessionScope.userLogin != null}">
+            <button class="btn" onclick="userMyPage()">마이페이지</button>
+        </c:if>
+
         <c:if test="${sessionScope.adminLogin == 'admin'}">
             <button onclick="adminAccess()" class="btn">관리자</button>
         </c:if>
@@ -43,6 +47,11 @@
 
     const adminAccess = () => {
         location.href = "/user/admin";
+
+    }
+
+    const userMyPage = () => {
+        location.href = "/user/myPage";
 
     }
 </script>
