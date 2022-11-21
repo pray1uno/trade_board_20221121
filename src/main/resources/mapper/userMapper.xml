@@ -4,6 +4,10 @@
 
 
 <mapper namespace="User">
+    <insert id="insert" parameterType="userDTO">
+        insert into trade_user_table (userId, userPassword, userName, userMobile)
+        values (#{userId}, #{userPassword}, #{userName}, #{userMobile})
+    </insert>
 
 </mapper>
 
