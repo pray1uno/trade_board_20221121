@@ -9,6 +9,12 @@
         values (#{userId}, #{userPassword}, #{userName}, #{userMobile})
     </insert>
 
+    <select id="login" resultType="userDTO">
+        select *
+        from trade_user_table
+        where userId = #{userId}
+          and userPassword = #{userPassword}
+    </select>
 </mapper>
 
 

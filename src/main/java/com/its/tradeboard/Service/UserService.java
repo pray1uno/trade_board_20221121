@@ -18,4 +18,14 @@ public class UserService {
             return false;
         }
     }
+
+    public boolean login(UserDTO userDTO) {
+        UserDTO result = userRepository.login(userDTO);
+
+        if (result != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

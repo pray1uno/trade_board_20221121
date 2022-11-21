@@ -12,4 +12,8 @@ public class UserRepository {
     public int save(UserDTO userDTO) {
         return sql.insert("User.insert", userDTO);
     }
+
+    public UserDTO login(UserDTO userDTO) {
+        return sql.selectOne("User.login", userDTO);
+    }
 }
