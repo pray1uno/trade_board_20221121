@@ -16,6 +16,10 @@
     <div class="container">
         <button onclick="returnToHome()" class="btn">메인</button>
 
+        <c:if test="${sessionScope.adminLogin == 'admin'}">
+            <button onclick="adminAccess()" class="btn">관리자</button>
+        </c:if>
+
         <c:if test="${sessionScope.userLogin != null or sessionScope.adminLogin != null}">
             <button onclick="userLogout()" class="btn">로그아웃</button>
         </c:if>
@@ -24,11 +28,22 @@
 </body>
 <script>
     const returnToHome = () => {
+        <c:if test="${sessionScope.userLogin == null}">
         location.href = "/";
+        </c:if>
+
+        <c:if test="${sessionScope.userLogin != null or sessionScope.adminLogin != null}">
+        location.href ="/trade/main";
+        </c:if>
     }
 
     const userLogout = () => {
         location.href = "/user/logout";
+    }
+
+    const adminAccess = () => {
+        location.href = "/user/admin";
+
     }
 </script>
 </html>
