@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>trade_main</title>
@@ -67,9 +68,9 @@
         <li class="tab-button" data-tab="tab-5">완료</li>
     </ul>
 
-    <section>
+    <section class="tab-section" id="tab-section-1">
         <div id="tab-1" class="tab-content current">
-            <form action="/search" role="search">
+            <form action="/search/sale" role="search">
                 <div class="input-group">
                     <select name="searchType" class="form-select">
                         <option value="itemName" selected>아이템 이름</option>
@@ -90,7 +91,87 @@
                         <th>판매자</th>
                         <th>흥정여부</th>
                     </tr>
+                    <c:forEach items="${itemList}" var="list">
+                        <tr>
+                            <td>${list.itemCategory}</td>
+                            <td>${list.itemName}</td>
+                            <td>${list.itemUnitPrice}</td>
+                            <td>${list.salesUserName}</td>
+                            <td>${list.itemBargain}</td>
+                        </tr>
+                    </c:forEach>
                 </table>
+            </div>
+
+            <div class="container">
+                <ul class="pagination justify-content-center">
+                    <c:choose>
+                        <c:when test="${paging.page == 1}">
+                            <li class="page-item disabled">
+                                <a class="page-link">＜</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/item/mainPaging">＜</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:choose>
+                        <c:when test="${paging.page <= 1}">
+                            <li class="page-item disabled">
+                                <a class="page-link">이전</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/item/mainPaging?page=${paging.page-1}">이전</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
+                        <c:choose>
+                            <c:when test="${i eq paging.page}">
+                                <li class="active">
+                                    <a class="page-link">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="/item/mainPaging?page=${i}">${i}</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${paging.page>=paging.maxPage}">
+                            <li class="page-item disabled">
+                                <a class="page-link">다음</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/item/mainPaging?page=${paging.page+1}">다음</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:choose>
+                        <c:when test="${paging.page>=paging.maxPage}">
+                            <li class="page-item disabled">
+                                <a class="page-link"> ＞ </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/item/mainPaging?page=${paging.maxPage}"> ＞ </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
             </div>
         </div>
     </section>
@@ -148,7 +229,7 @@
                                     <option value="itemCategory">기타</option>
                                 </select>
                             </td>
-                            <input type="button" class="btn btn-outline-primary" onclick="salesRegi()"
+                            <input type="button" class="btn btn-outline-primary"
                                    value="판매 등록" style="float: right">
                         </tr>
                         <th>아이템 이름</th>
@@ -174,17 +255,19 @@
             <div>
                 <table class="table">
                     <tr>
-                        <span>|판매중인 아이템|</span>
+                        <span>|판매중인 아이템</span>
                     </tr>
                     <tr>
                         <th>아이템 이름</th>
                         <th>가격</th>
+                        <th>개당가격</th>
                         <th>흥정여부</th>
                         <th>등록시간</th>
                     </tr>
                     <tr>
                         <td>자동리스트_아이템네임</td>
                         <td>자동리스트_가격</td>
+                        <td>자동리스트_개당가격</td>
                         <td>자동리스트를 어케하지</td>
                         <td>자동리스트_등록시간</td>
                     </tr>
@@ -198,7 +281,6 @@
             완료 임시내용
         </div>
     </section>
-
 </div>
 </body>
 <script>
@@ -213,6 +295,19 @@
             $(this).addClass('current');
             $("#" + tab_id).addClass('current');
         })
+    })
+
+    const price = document.querySelector('#price');
+    price.addEventListener('keyup', function (e) {
+        let value = e.target.value;
+        value = Number(value.replaceAll(',', ''));
+
+        if (isNaN(value)) {
+            price.value = "";
+        } else {
+            const formatValue = value.toLocaleString('ko-KR');
+            price.value = formatValue;
+        }
     })
 </script>
 </html>

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TradeController {
     @GetMapping("/trade/main")
     public String tradeMain() {
-        return "trade_main";
+        return "redirect:/item/mainPaging";
     }
 }

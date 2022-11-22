@@ -38,11 +38,11 @@ public class UserController {
         if (result) {
             model.addAttribute("userLogin", userDTO.getUserId());
             session.setAttribute("userLogin", userDTO.getUserId());
-            return "trade_main";
+            return "redirect:/item/mainPaging";
         } else if (adminResult) {
             model.addAttribute("adminLogin", userDTO.getUserId());
             session.setAttribute("adminLogin", userDTO.getUserId());
-            return "admin";
+            return "redirect:/admin";
         } else {
             return "index";
         }
