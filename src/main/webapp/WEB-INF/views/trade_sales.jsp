@@ -124,6 +124,7 @@
                         <th>가격</th>
                         <th>흥정여부</th>
                         <th>등록시간</th>
+                        <th>판매취소</th>
                     </tr>
                     <c:forEach items="${mySalesList}" var="sales">
                         <tr>
@@ -133,9 +134,83 @@
                             <td>${sales.itemBargain}</td>
                             <td><fmt:formatDate value="${sales.salesCreatedDate}"
                                                 pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+                            <td>
+                                <button class="btn btn-close" onclick="sales_cancel(${sales.id})"></button>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
+            </div>
+
+            <div class="container">
+                <ul class="pagination justify-content-center">
+                    <c:choose>
+                        <c:when test="${salePage.page == 1}">
+                            <li class="page-item disabled">
+                                <a class="page-link">＜</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/trade/sales">＜</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:choose>
+                        <c:when test="${salePage.page <= 1}">
+                            <li class="page-item disabled">
+                                <a class="page-link">이전</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/trade/sales?page=${salePage.page-1}">이전</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="${salePage.startPage}" end="${salePage.endPage}" var="i" step="1">
+                        <c:choose>
+                            <c:when test="${i eq salePage.page}">
+                                <li class="active">
+                                    <a class="page-link">${i}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="/trade/sales?page=${i}">${i}</a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${salePage.page>=salePage.maxPage}">
+                            <li class="page-item disabled">
+                                <a class="page-link">다음</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/trade/sales?page=${paging.page+1}">다음</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:choose>
+                        <c:when test="${salePage.page>=salePage.maxPage}">
+                            <li class="page-item disabled">
+                                <a class="page-link"> ＞ </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item">
+                                <a class="page-link" href="/trade/sales?page=${paging.maxPage}"> ＞ </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
             </div>
         </div>
     </section>
@@ -174,6 +249,15 @@
 
     const sales_to_completion = () => {
         location.href = "/trade/completion";
+    }
+
+    const sales_cancel = (result) => {
+        if (confirm("해당 아이템의 등록을 취소 하시겠습니까?")) {
+            if (true) {
+                location.href = "/trade/cancel?id=" + result;
+            }
+            alert("등록취소 되었습니다.")
+        }
     }
 
 </script>

@@ -10,6 +10,22 @@
         where salesUserName = #{userId}
     </select>
 
+    <delete id="cancel" parameterType="Long">
+        delete
+        from sales_item_table
+        where id = #{id}
+    </delete>
+
+    <select id="salesPaging" parameterType="java.util.HashMap" resultType="itemDTO">
+        select *
+        from sales_item_table
+        order by id asc limit #{start2}, #{limit2}
+    </select>
+
+    <select id="salesCount" resultType="Integer">
+        select count(id)
+        from sales_item_table
+    </select>
 </mapper>
 
 
