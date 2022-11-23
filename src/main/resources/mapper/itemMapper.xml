@@ -14,4 +14,18 @@
         select count(id)
         from sales_item_table
     </select>
+
+    <insert id="itemUpload" parameterType="itemDTO">
+        insert into sales_item_table (itemCategory, itemName, itemCount, itemUnitPrice,
+                                      salesUserName, itemBargain)
+        values (#{itemCategory}, #{itemName}, #{itemCount}, #{itemUnitPrice},
+                #{salesUserName}, #{itemBargain})
+    </insert>
+
+    <select id="uploadList" parameterType="itemDTO" resultType="itemDTO">
+        select *
+        from sales_item_table
+        order by id desc
+    </select>
+
 </mapper>

@@ -42,7 +42,7 @@ public class UserController {
         } else if (adminResult) {
             model.addAttribute("adminLogin", userDTO.getUserId());
             session.setAttribute("adminLogin", userDTO.getUserId());
-            return "redirect:/admin";
+            return "admin";
         } else {
             return "index";
         }

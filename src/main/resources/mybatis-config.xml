@@ -6,5 +6,6 @@
         <typeAlias type="com.its.tradeboard.DTO.UserDTO" alias="userDTO"></typeAlias>
         <typeAlias type="com.its.tradeboard.DTO.AdminDTO" alias="adminDTO"></typeAlias>
         <typeAlias type="com.its.tradeboard.DTO.ItemDTO" alias="itemDTO"></typeAlias>
+        <typeAlias type="com.its.tradeboard.DTO.BoardDTO" alias="boardDTO"></typeAlias>
     </typeAliases>
 </configuration>

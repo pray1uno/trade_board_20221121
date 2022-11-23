@@ -1,12 +1,47 @@
 package com.its.tradeboard.Controller;
 
+import com.its.tradeboard.DTO.ItemDTO;
+import com.its.tradeboard.Service.TradeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class TradeController {
+    @Autowired
+    private TradeService tradeService;
     @GetMapping("/trade/main")
     public String tradeMain() {
         return "redirect:/item/mainPaging";
+    }
+
+    @GetMapping("/trade/price")
+    public String tradePrice() {
+        return "trade_price";
+    }
+
+    @GetMapping("/trade/wishList")
+    public String tradeWishList() {
+        return "trade_wishList";
+    }
+
+    @GetMapping("/trade/sales")
+    public String tradeSales(Model model,
+                             HttpSession session) {
+        String userId = (String) session.getAttribute("userLogin");
+        List<ItemDTO> itemDTOList = tradeService.salesList(userId);
+
+        model.addAttribute("mySalesList", itemDTOList);
+        return "trade_sales";
+    }
+
+    @GetMapping("/trade/completion")
+    public String tradeCompletion() {
+        return "trade_completion";
     }
 }

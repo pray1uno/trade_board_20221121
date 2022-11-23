@@ -4,6 +4,11 @@
 
 
 <mapper namespace="Trade">
+    <select id="salesList" resultType="itemDTO">
+        select *
+        from sales_item_table
+        where salesUserName = #{userId}
+    </select>
 
 </mapper>
 
