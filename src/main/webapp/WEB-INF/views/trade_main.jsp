@@ -71,12 +71,13 @@
             <form action="/search/sale" role="search">
                 <div class="input-group">
                     <select name="searchType" class="form-select">
-                        <option value="itemName" selected>아이템 이름</option>
-                        <option value="itemUnitPrice">가격</option>
-                        <option value="salesMemberName">판매자</option>
+                        <option name="itemName" value="itemName" selected>아이템 이름</option>
+                        <option name="itemUnitPrice" value="itemUnitPrice">가격</option>
+                        <option name="salesUserName" value="salesUserName">판매자</option>
                     </select>
-                    <input type="search" name="q" class="form-control" placeholder="검색">
-                    <button class="btn">검색</button>
+                    <input type="search" name="q" class="form-control" placeholder="검색"
+                           aria-label="Search">
+                    <button class="btn btn-outline-primary">검색</button>
                 </div>
             </form>
 

@@ -28,4 +28,11 @@
         order by id desc
     </select>
 
+    <select id="searchSale" parameterType="java.util.HashMap" resultType="itemDTO">
+        select *
+        from sales_item_table
+        where ${searchType} like concat('%', #{q}, '%')
+        order by id desc
+    </select>
+
 </mapper>
