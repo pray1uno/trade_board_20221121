@@ -14,4 +14,8 @@ public class AdminRepository {
     public List<UserDTO> userList() {
         return sql.selectList("Admin.userList");
     }
+
+    public int userDelete(Long id) {
+        return sql.delete("Admin.userDelete", id);
+    }
 }

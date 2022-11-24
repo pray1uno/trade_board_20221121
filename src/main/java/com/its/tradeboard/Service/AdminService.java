@@ -14,4 +14,8 @@ public class AdminService {
     public List<UserDTO> userList() {
         return adminRepository.userList();
     }
+
+    public int userDelete(Long id) {
+        return adminRepository.userDelete(id);
+    }
 }

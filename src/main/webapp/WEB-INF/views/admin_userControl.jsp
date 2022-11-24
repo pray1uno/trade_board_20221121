@@ -51,14 +51,26 @@
                         <span>판매정지</span>
                     </c:if>
                 </td>
-                <td><button class="btn btn-danger">정지</button></td>
-                <td><button class="btn btn-close"></button></td>
+                <td>
+                    <button class="btn btn-danger">정지</button>
+                </td>
+                <td>
+                    <button class="btn btn-close" onclick="user_delete(${user.id})"></button>
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 </body>
 <script>
+    const user_delete = (result) => {
+        if (confirm("해당 회원을 삭제 하시겠습니까?")) {
+            if (true) {
+                location.href = "/admin/userDelete?id=" + result;
+            }
+            alert("삭제 되었습니다.")
+        }
 
+    }
 </script>
 </html>

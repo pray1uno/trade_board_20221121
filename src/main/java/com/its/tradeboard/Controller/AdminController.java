@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -28,6 +29,14 @@ public class AdminController {
         List<UserDTO> userDTOList = adminService.userList();
         model.addAttribute("userControl", userDTOList);
         return "admin_userControl";
+    }
+
+    @GetMapping("/admin/userDelete")
+    public String userDelete(@RequestParam("id") Long id,
+                             Model model) {
+        int userDelete = adminService.userDelete(id);
+        model.addAttribute("userDelete", userDelete);
+        return "redirect:/admin/userControl";
     }
 
     @GetMapping("/admin/salesItemControl")
