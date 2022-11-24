@@ -23,6 +23,17 @@
         where id = #{id}
     </delete>
 
+    <update id="userStop" parameterType="Long">
+        update trade_user_table
+        set userRole = 2
+        where id = #{id}
+    </update>
+
+    <update id="userActive" parameterType="Long">
+        update trade_user_table
+        set userRole = 1
+        where id = #{id}
+    </update>
 </mapper>
 
 

@@ -18,4 +18,24 @@ public class AdminService {
     public int userDelete(Long id) {
         return adminRepository.userDelete(id);
     }
+
+    public boolean userStop(Long id) {
+        int result = adminRepository.userStop(id);
+
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean userActive(Long id) {
+        int result = adminRepository.userActive(id);
+
+        if (result != 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

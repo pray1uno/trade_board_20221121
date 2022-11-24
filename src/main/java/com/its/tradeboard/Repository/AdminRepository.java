@@ -18,4 +18,12 @@ public class AdminRepository {
     public int userDelete(Long id) {
         return sql.delete("Admin.userDelete", id);
     }
+
+    public int userStop(Long id) {
+        return sql.update("Admin.userStop", id);
+    }
+
+    public int userActive(Long id) {
+        return sql.update("Admin.userActive", id);
+    }
 }

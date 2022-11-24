@@ -39,6 +39,28 @@ public class AdminController {
         return "redirect:/admin/userControl";
     }
 
+    @GetMapping("/admin/userStop")
+    public String userStop(@RequestParam("id") Long id) {
+        boolean result = adminService.userStop(id);
+
+        if (result) {
+            return "redirect:/admin/userControl";
+        } else {
+            return "admin";
+        }
+    }
+
+    @GetMapping("/admin/userActive")
+    public String userActive(@RequestParam("id") Long id) {
+        boolean result = adminService.userActive(id);
+
+        if (result) {
+            return "admin";
+        } else {
+            return "redirect:/admin/userControl";
+        }
+    }
+
     @GetMapping("/admin/salesItemControl")
     public String salesItemControlForm() {
         return "admin_salesItemControl";

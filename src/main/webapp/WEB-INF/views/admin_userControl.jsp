@@ -34,7 +34,8 @@
             <th>비밀번호</th>
             <th>전화번호</th>
             <th>구분</th>
-            <th>판매정지</th>
+            <th>거래정지</th>
+            <th>거래가능</th>
             <th>회원삭제</th>
         </tr>
         <c:forEach items="${userControl}" var="user">
@@ -48,11 +49,14 @@
                         <span>거래가능</span>
                     </c:if>
                     <c:if test="${user.userRole == 2}">
-                        <span>판매정지</span>
+                        <span>거래정지</span>
                     </c:if>
                 </td>
                 <td>
-                    <button class="btn btn-danger">정지</button>
+                    <button class="btn btn-danger" onclick="user_trade_stop(${user.id})">정지</button>
+                </td>
+                <td>
+                    <button class="btn btn-secondary" onclick="user_trade_active(${user.id})">가능</button>
                 </td>
                 <td>
                     <button class="btn btn-close" onclick="user_delete(${user.id})"></button>
@@ -70,6 +74,16 @@
             }
             alert("삭제 되었습니다.")
         }
+
+    }
+
+    const user_trade_stop = (result) => {
+        location.href = "/admin/userStop?id=" + result;
+
+    }
+
+    const user_trade_active = (result) => {
+        location.href = "/admin/userActive?id=" + result;
 
     }
 </script>
