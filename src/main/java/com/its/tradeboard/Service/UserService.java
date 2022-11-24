@@ -20,14 +20,9 @@ public class UserService {
         }
     }
 
-    public boolean login(UserDTO userDTO) {
+    public UserDTO login(UserDTO userDTO) {
         UserDTO result = userRepository.login(userDTO);
-
-        if (result != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return result;
     }
 
     public boolean adminLogin(UserDTO userDTO) {

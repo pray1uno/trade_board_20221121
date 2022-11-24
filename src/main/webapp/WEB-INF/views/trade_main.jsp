@@ -186,7 +186,11 @@
     }
 
     const search_to_sales = () => {
-        location.href = "/trade/sales";
+        if (${sessionScope.suspension.userRole == 1}) {
+            location.href = "/trade/sales";
+        } else {
+            alert("거래가 정지된 계정입니다.")
+        }
     }
 
     const search_to_completion = () => {

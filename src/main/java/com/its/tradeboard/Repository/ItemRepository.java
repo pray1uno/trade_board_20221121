@@ -2,6 +2,7 @@ package com.its.tradeboard.Repository;
 
 import com.its.tradeboard.DTO.BoardDTO;
 import com.its.tradeboard.DTO.ItemDTO;
+import com.its.tradeboard.DTO.UserDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

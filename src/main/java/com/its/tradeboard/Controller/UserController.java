@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @GetMapping("/user/save")
     public String saveForm() {
         return "user_save";
@@ -32,10 +33,12 @@ public class UserController {
     public String login(@ModelAttribute UserDTO userDTO,
                         Model model,
                         HttpSession session) {
-        boolean result = userService.login(userDTO);
+        UserDTO result = userService.login(userDTO);
         boolean adminResult = userService.adminLogin(userDTO);
 
-        if (result) {
+        if (result != null) {
+            session.setAttribute("suspension", result);
+
             model.addAttribute("userLogin", userDTO.getUserId());
             session.setAttribute("userLogin", userDTO.getUserId());
             return "redirect:/item/mainPaging";

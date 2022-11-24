@@ -2,6 +2,7 @@ package com.its.tradeboard.Service;
 
 import com.its.tradeboard.DTO.ItemDTO;
 import com.its.tradeboard.DTO.PageDTO;
+import com.its.tradeboard.DTO.UserDTO;
 import com.its.tradeboard.Repository.TradeRepository;
 import com.its.tradeboard.commens.PagingConst;
 import org.springframework.beans.factory.annotation.Autowired;

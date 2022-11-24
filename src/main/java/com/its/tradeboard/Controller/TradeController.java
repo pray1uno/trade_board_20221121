@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +16,7 @@ import java.util.List;
 public class TradeController {
     @Autowired
     private TradeService tradeService;
+
     @GetMapping("/trade/main")
     public String tradeMain() {
         return "redirect:/item/mainPaging";
@@ -36,7 +36,6 @@ public class TradeController {
     public String tradeSales(Model model,
                              HttpSession session,
                              @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-        System.out.println("model = " + model + ", session = " + session + ", page = " + page);
         String userId = (String) session.getAttribute("userLogin");
         List<ItemDTO> itemDTOList = tradeService.salesList(userId);
         model.addAttribute("mySalesList", itemDTOList);
@@ -46,10 +45,8 @@ public class TradeController {
         model.addAttribute("salesPaging", salesPaging);
         model.addAttribute("salePage", pageDTO);
 
-        System.out.println("model = " + model + ", session = " + session + ", page = " + page);
         return "trade_sales";
     }
-
 
     @GetMapping("/trade/completion")
     public String tradeCompletion() {
