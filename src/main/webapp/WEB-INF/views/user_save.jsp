@@ -18,8 +18,6 @@
         <input type="text" placeholder="ID" class="form-control" name="userId" id="saveId">
         <label for="savePassword">비밀번호</label>
         <input type="text" placeholder="PASSWORD" class="form-control" name="userPassword" id="savePassword">
-        <label for="saveNickName">닉네임</label>
-        <input type="text" placeholder="NICKNAME" class="form-control" name="userName" id="saveNickName">
         <label for="saveMobile">전화번호</label>
         <input type="text" placeholder="MOBILE" class="form-control" name="userMobile" id="saveMobile">
         <div class="container">

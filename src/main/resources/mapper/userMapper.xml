@@ -5,8 +5,8 @@
 
 <mapper namespace="User">
     <insert id="insert" parameterType="userDTO">
-        insert into trade_user_table (userId, userPassword, userName, userMobile)
-        values (#{userId}, #{userPassword}, #{userName}, #{userMobile})
+        insert into trade_user_table (userId, userPassword, userMobile)
+        values (#{userId}, #{userPassword}, #{userMobile})
     </insert>
 
     <select id="login" resultType="userDTO">
@@ -25,7 +25,6 @@
     <update id="update" parameterType="userDTO">
         update trade_user_table
         set userPassword = #{userPassword},
-            userName     = #{userName},
             userMobile   = #{userMobile}
         where id = #{id}
     </update>

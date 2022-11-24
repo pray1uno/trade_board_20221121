@@ -26,9 +26,6 @@
         <input type="text" name="userPassword" id="changePassword2" class="form-control" placeholder="새로운 비밀번호 확인"> <br>
         <br>
 
-        <label for="inputUserName">닉네임 수정</label>
-        <input type="text" name="userName" id="inputUserName" class="form-control" value="${myPage.userName}"> <br>
-
         <label for="inputUserMobile">전화번호 수정</label>
         <input type="text" name="userMobile" id="inputUserMobile" class="form-control" value="${myPage.userMobile}"> <br>
 

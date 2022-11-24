@@ -11,6 +11,12 @@
           and adminPassword = #{userPassword}
     </select>
 
+    <select id="userList" resultType="userDTO">
+        select *
+        from trade_user_table
+        order by id asc
+    </select>
+
 </mapper>
 
 
