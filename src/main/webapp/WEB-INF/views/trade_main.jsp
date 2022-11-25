@@ -23,7 +23,6 @@
             padding: 0px;
             list-style: none;
             text-align: center;
-
         }
 
         ul.tabs li {
@@ -188,6 +187,8 @@
     const search_to_sales = () => {
         if (${sessionScope.suspension.userRole == 1}) {
             location.href = "/trade/sales";
+        } else if (${sessionScope.adminLogin == 'admin'}){
+            alert("관리자는 판매등록을 진행할 수 없습니다.")
         } else {
             alert("거래가 정지된 계정입니다.")
         }

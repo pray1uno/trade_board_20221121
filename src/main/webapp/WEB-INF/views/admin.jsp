@@ -11,21 +11,34 @@
 <head>
     <title>admin</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        #allBox {
+            display: flex;
+        }
+
+        #userConBT, #listConBT, #itemConBT {
+            width: 300px;
+            height: 300px;
+            margin-top: 100px;
+            margin-left: 50px;
+            padding: 10px 20px;
+            font-size: xxx-large;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="layout/header.jsp"></jsp:include>
-<c:if test="${sessionScope.adminLogin == 'admin'}">
-    <div class="container">
-        <button onclick="userControl()" class="btn">회원관리</button>
+<div class="container" id="allBox">
+    <div class="container" id="userCon">
+        <button onclick="userControl()" class="btn btn-outline-primary" id="userConBT">회원관리</button>
     </div>
-    <div class="container">
-        <button onclick="tradeListControl()" class="btn">거래 내역</button>
+    <div class="container" id="listCon">
+        <button onclick="tradeListControl()" class="btn btn-outline-primary" id="listConBT">거래내역</button>
     </div>
-    <div class="container">
-        <button onclick="salesItemControl()" class="btn">현재 판매 현황</button>
+    <div class="container" id="itemCon">
+        <button onclick="salesItemControl()" class="btn btn-outline-primary" id="itemConBT">현재 판매 현황</button>
     </div>
-
-</c:if>
+</div>
 </body>
 <script>
     const userControl = () => {
