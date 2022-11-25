@@ -10,11 +10,25 @@
 <head>
     <title>user_myPage</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        #mpControl {
+            display: flex;
+        }
+
+        #mpBT {
+            width: 300px;
+            height: 300px;
+            margin-top: 100px;
+            margin-left: 50px;
+            padding: 20px 30px;
+            font-size: xxx-large;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="layout/header.jsp"></jsp:include>
-<div class="container">
-    <button class="btn" onclick="userMyUpdate()">내 정보 수정</button>
+<div class="container" id="mpControl">
+    <button class="btn btn-outline-info" onclick="userMyUpdate()" id="mpBT">내 정보<br>수정</button>
 </div>
 </body>
 <script>

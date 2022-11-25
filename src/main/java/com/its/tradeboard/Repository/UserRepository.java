@@ -29,4 +29,8 @@ public class UserRepository {
     public int update(UserDTO userDTO) {
         return sql.update("User.update", userDTO);
     }
+
+    public String duplicate(String saveId) {
+        return sql.selectOne("User.duplicate", saveId);
+    }
 }

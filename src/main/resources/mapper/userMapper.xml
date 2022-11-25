@@ -28,6 +28,12 @@
             userMobile   = #{userMobile}
         where id = #{id}
     </update>
+
+    <select id="duplicate" parameterType="String" resultType="String">
+        select userId
+        from trade_user_table
+        where userId = #{userId}
+    </select>
 </mapper>
 
 

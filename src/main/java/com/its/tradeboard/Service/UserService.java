@@ -48,4 +48,14 @@ public class UserService {
             return false;
         }
     }
+
+    public String duplicate(String saveId) {
+        String result = userRepository.duplicate(saveId);
+
+        if (result == null) {
+            return "OK";
+        } else {
+            return "NO";
+        }
+    }
 }
