@@ -19,8 +19,8 @@
         }
 
         #loginUI {
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             display: flex;
             border-radius: 40px;
             align-items: center;
@@ -29,7 +29,7 @@
 
         #loginControl {
             width: 100%;
-            height: 600px;
+            height: 800px;
             margin-top: 200px;
             background: aliceblue;
             border-radius: 20px;

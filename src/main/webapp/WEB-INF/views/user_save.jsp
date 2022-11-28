@@ -19,8 +19,8 @@
         }
 
         #totalBox {
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             display: flex;
             border-radius: 40px;
             align-items: center;
@@ -29,7 +29,7 @@
 
         #formBox {
             width: 100%;
-            height: 600px;
+            height: 800px;
             margin-top: 200px;
             background: aliceblue;
             border-radius: 20px;
@@ -77,7 +77,7 @@
                 <label for="saveId">아이디</label>
             </div>
             <div class="container">
-                <input type="text" placeholder="ID" class="form-control" name="userId" id="saveId" onblur="id_check()">
+                <input type="email" placeholder="ID" class="form-control" name="userId" id="saveId" onblur="id_check()">
                 <span id="saveId_inner"></span>
             </div>
 
@@ -86,14 +86,18 @@
             </div>
 
             <div class="container">
-                <input type="text" placeholder="PASSWORD" class="form-control" name="userPassword" id="savePassword">
+                <input type="password" placeholder="PASSWORD" class="form-control" name="userPassword" id="savePassword"
+                       onblur="pw_check()">
+                <span id="savePW_inner"></span>
             </div>
 
             <div class="container" id="mobileLabel">
                 <label for="saveMobile">전화번호</label>
             </div>
             <div class="container">
-                <input type="text" placeholder="MOBILE" class="form-control" name="userMobile" id="saveMobile">
+                <input type="text" placeholder="MOBILE" class="form-control" name="userMobile" id="saveMobile"
+                       onblur="mobile_check()">
+                <span id="saveMob_inner"></span>
             </div>
 
             <div class="container">
@@ -104,13 +108,33 @@
 </div>
 </body>
 <script>
+    const checkExpMobile = /^\d{3}-\d{4}-\d{4}$/;
+    const checkExpPW = /^[a-zA-Z\d-_!#]{1,30}$/
+
+    const id_inner = document.getElementById("saveId_inner");
+
+
     const userNewSave = () => {
-        document.newSaveForm.submit();
+
+        const test = id_inner.innerHTML == "이미 사용중인 아이디 입니다.";
+        const pw_regular = document.getElementById("savePassword").value;
+        const mob_regular = document.getElementById("saveMobile").value;
+
+        if (pw_regular.match(checkExpPW) && mob_regular.match(checkExpMobile) && !test) {
+            document.newSaveForm.submit();
+        } else if (test) {
+            alert("중복된 아이디는 가입할 수 없습니다.");
+            return false;
+        } else if (!pw_regular.match(checkExpPW) || !mob_regular.match(checkExpMobile)) {
+            alert("가입 정보를 확인하세요.");
+            return false;
+        }
+
     }
 
     const id_check = () => {
         const save_id = document.getElementById("saveId").value;
-        const id_inner = document.getElementById("saveId_inner");
+
 
         if (save_id.length > 0) {
             $.ajax({
@@ -139,8 +163,42 @@
         } else if (save_id.length == 0) {
             id_inner.innerHTML = "사용하실 아이디를 입력해 주세요.";
             id_inner.style.color = "red";
+            return false;
         } else {
             id_inner.innerHTML = "";
+        }
+
+    }
+
+    const pw_check = () => {
+        const save_pw = document.getElementById("savePassword").value;
+        const pw_inner = document.getElementById("savePW_inner");
+
+        if (!save_pw.match(checkExpPW)) {
+            pw_inner.innerHTML = "특수문자는 !, -, _, #만 사용 가능합니다.";
+            pw_inner.style.color = "red";
+            return false;
+        } else if (save_pw.length == 0) {
+            pw_inner.innerHTML = "";
+        } else {
+            pw_inner.innerHTML = "사용할 수 있는 비밀번호 입니다.";
+            pw_inner.style.color = "green";
+        }
+
+    }
+
+    const mobile_check = () => {
+        const save_mobile = document.getElementById("saveMobile").value;
+        const mobile_inner = document.getElementById("saveMob_inner");
+
+        if (!save_mobile.match(checkExpMobile)) {
+            mobile_inner.innerHTML = "'-' 까지 정확하게 입력해 주세요.";
+            mobile_inner.style.color = "red";
+            return false;
+        } else if (save_mobile.length == 0) {
+            mobile_inner.innerHTML = "";
+        } else {
+            mobile_inner.innerHTML = "";
         }
 
     }

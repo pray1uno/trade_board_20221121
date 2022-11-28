@@ -18,8 +18,8 @@
         }
 
         #totalBox {
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             display: flex;
             border-radius: 40px;
             align-items: center;
@@ -28,7 +28,7 @@
 
         #formBox {
             width: 100%;
-            height: 600px;
+            height: 800px;
             margin-top: 200px;
             background: aliceblue;
             border-radius: 20px;
@@ -92,10 +92,6 @@
             text-align: left;
         }
 
-        #inputUserMobile {
-            margin-bottom: 100px;
-        }
-
 
         #labelCon1, #labelCon2 {
             width: 400px;
@@ -111,11 +107,12 @@
             border: 1px solid lightyellow;
             border-radius: 30px;
             outline: none;
+            margin-top: 100px;
             background: dodgerblue;
             color: white;
         }
 
-        #nowPW_inner, #newPW_inner {
+        #nowPW_inner, #newPW_inner, #newMob_inner {
             display: block;
         }
 
@@ -152,7 +149,9 @@
             </div>
 
             <div class="container">
-                <input type="text" name="userMobile" id="inputUserMobile" value="${myPage.userMobile}">
+                <input type="text" name="userMobile" id="inputUserMobile" value="${myPage.userMobile}"
+                       onblur="newMobile_check()">
+                <span id="newMob_inner"></span>
             </div>
 
             <div class="container">
@@ -211,7 +210,7 @@
         const newPW_two = document.getElementById("changePassword2").value;
         const newPW_inner = document.getElementById("newPW_inner");
 
-        const overlap = checkDB_pw == newPW_one || checkDB_pw== newPW_two;
+        const overlap = checkDB_pw == newPW_one || checkDB_pw == newPW_two;
         const missMatch = newPW_one != newPW_two;
         const blank = newPW_one.length == 0 || newPW_two.length == 0;
 
@@ -244,6 +243,20 @@
             newPW_inner.innerHTML = "";
         }
 
+    }
+
+    const newMobile_check = () => {
+        const newMobile = document.getElementById("inputUserMobile").value;
+        const newMob_inner = document.getElementById("newMob_inner");
+        const checkExpMobile = /^\d{3}-\d{4}-\d{4}$/;
+
+        if (!newMobile.match(checkExpMobile)) {
+            newMob_inner.innerHTML = "'-'까지 정확하게 입력해 주세요.";
+            newMob_inner.style.color = "red";
+            return false;
+        } else {
+            newMob_inner.innerHTML = "";
+        }
     }
 </script>
 </html>
